@@ -1,0 +1,36 @@
+{% extends 'posts/posts_base.html' %}
+
+{% load bootstrap4 %}
+{% block post_content %}
+
+{% if user.is_authenticated %}
+<h4>Create a new Post.!</h4>
+<form id="postForm" action="{% url 'posts:post_new' %}" method="POST">
+    {% csrf_token %}
+    {{ form.errors }}
+    {% bootstrap_form form %}
+    
+    <input type="submit" value="Save" class="btn btn-primary btn-large">
+</form>
+{% else %}
+        <a href="{% url 'login' %}?next={{ request.path }}">Login to Post.!</a>
+{% endif %}
+
+{% endblock %}
+
+
+<!-- 
+{% block content %}
+
+<h3>New Post</h3>
+    {% if user.is_authenticated %}
+        <form>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="save btn btn-default" name="button">Save.!</button>
+        </form>
+    {% else %}
+        <a href="{% url 'login' %}?next={{ request.path }}">Login to Post.!</a>
+    {% endif %}
+    
+{% endblock %} -->
