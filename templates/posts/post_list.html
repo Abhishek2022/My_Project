@@ -1,0 +1,38 @@
+{% extends 'account/base.html' %}
+<!-- {% block prepost %}
+
+<div class="col-md-4">
+    {% if user.is_authenticated %}
+    <h1>{{ post_user.username }}</h1>
+    {% else %}
+    <p>Please Login.!</p>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block post_content %}
+{% if user.is_authenticated %}
+<div class="col-md-4">
+    {% for post in post_list %}
+        {% include 'posts/_post.html' %}
+    {% endfor %}
+</div>
+{% endif %}
+{% endblock %} -->
+
+
+
+{% block content %}
+  <h1>Post List</h1>
+  {% if post_list %}
+  <ul>
+    {% for post in post_list %}
+      <li>
+        <a href="{{ post.get_absolute_url }}">{{ post.image }}</a> ({{book.caption}})
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>No Posts :(</p>
+  {% endif %}       
+{% endblock %}
